@@ -3615,6 +3615,10 @@ column_name:
   {
     $$ = &ColName{Name: $1}
   }
+| NEW '.' reserved_sql_id
+  {
+    $$ = &ColName{Qualifier: TableName{Name: NewTableIdent("NEW")}, Name: $3}
+  }
 | table_id '.' reserved_sql_id
   {
     $$ = &ColName{Qualifier: TableName{Name: $1}, Name: $3}
